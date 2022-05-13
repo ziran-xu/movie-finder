@@ -2,10 +2,11 @@ import logo from './movie-icon.png';
 import noImage from './no-image.jpg';
 import './App.css';
 import { useEffect, useState } from 'react';
+import { myApiKey } from './helper.js';
 
 function App() {
 
-  const [movies, setMovies] = useState([]);
+  const [movieResults, setMovieResults] = useState([]);
   const [searchWord, setSearchWord] = useState('');
 
   useEffect(() => {
@@ -13,11 +14,11 @@ function App() {
   }, [searchWord]);
 
   const updateMovies = async () => {
-    const url = `http://www.omdbapi.com/?apikey=256c6d40&s=${searchWord}`
+    const url = `http://www.omdbapi.com/?apikey=${myApiKey}&s=${searchWord}`
     const response = await fetch(url);
     const responseJson = await response.json();
 
-    setMovies(responseJson)
+    setMovieResults(responseJson)
   }
 
   function handleChange(event) {
@@ -33,19 +34,22 @@ function App() {
       </header>
       <div className="Movie-list">
         <div>
-          {movies.Search ? movies.Search.map((movie) => {
-            return ( 
-              <div>
-                <h1>{movie.Title} ({movie.Year})</h1>
-                <img className="Poster" src={movie.Poster} onError={(e)=>{e.target.onerror = null; e.target.src=noImage}}/>
-                <div><button>Display Label</button></div>
-              </div>)
-          }): null}
-          {movies.Error && searchWord ? <div className="Error-message">{movies.Error}</div> : null}
+          {movieResults.Search ? movieResults.Search.map((movie) => {return (<MovieComponent movie = {movie}/>)}) : null}
+          {movieResults.Error && searchWord ? <div className="Error-message">{movieResults.Error}</div> : null}
         </div>
       </div>
     </div>
   );
+}
+
+function MovieComponent(props) {
+  return (
+    <div>
+      <h1>{props.movie.Title} ({props.movie.Year})</h1>
+      <img className="Poster" src={props.movie.Poster} onError={(e)=>{e.target.onerror = null; e.target.src=noImage}}/>
+      <div><button>Display Label</button></div>
+    </div>
+  )
 }
 
 export default App;
