@@ -10,7 +10,7 @@ Free API key: http://www.omdbapi.com/apikey.aspx
 
 Instructions:
 
-1. Open your terminal and type: `git clone {https://github.com/ziran-xu/movie-finder}`
+1. Open your terminal and type: `git clone https://github.com/ziran-xu/movie-finder`
 This clones the repo
 
 2. cd into the new folder and type: `npm install`
