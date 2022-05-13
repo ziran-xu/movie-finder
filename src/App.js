@@ -46,7 +46,7 @@ function MovieComponent(props) {
   return (
     <div>
       <h1>{props.movie.Title} ({props.movie.Year})</h1>
-      <img className="Poster" src={props.movie.Poster} onError={(e)=>{e.target.onerror = null; e.target.src=noImage}}/>
+      <img className="Poster" src={props.movie.Poster} onError={(e)=>{e.target.onerror = null; e.target.src=noImage}} alt="movie-poster"/>
       <div><button>Display Label</button></div>
     </div>
   )
