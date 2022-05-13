@@ -1,6 +1,6 @@
 This app searches the OMDB API for movies. 
 
-Each search result displays the movie poster, title year of release and a button. Clicking the button currently does nothing.
+Each search result displays the movie poster, title, year of release and a button. Clicking the button currently does nothing.
 
 Updates to the search term should update the result list.
 
